@@ -1,8 +1,16 @@
 package com.ruoyi.web.controller.back;
 
+import com.ruoyi.common.core.controller.BaseController;
+import com.ruoyi.framework.util.ShiroUtils;
+import com.ruoyi.system.domain.SysUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.ruoyi.back.domain.StudentInfo;
+import com.ruoyi.back.service.IStudentInfoService;
 
 /**
  * 模态窗口
@@ -11,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/test")
-public class TestController
+public class TestController extends BaseController
 {
     private String prefix = "front";
 
@@ -84,9 +92,13 @@ public class TestController
     /**
      * 个人信息
      */
-    @GetMapping("/person_info/index")
-    public String persionInfo()
+    //@GetMapping("/person_info/index")
+    @RequestMapping("/person_info/index")
+    public String personInfo(Model mmap)
     {
+        //当前用户信息
+        //SysUser user = ShiroUtils.getSysUser();
+        mmap.addAttribute("test", "abcfw");
         return prefix + "/person_info";
     }
     /**
